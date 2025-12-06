@@ -525,134 +525,33 @@ img {
     box-shadow: inset -2px -2px 0 #2850a8, inset 2px 2px 0 #6890f8;
 }
 
-/* ============================
-   MOBILE LAYOUT 
-   ============================ */
-/* IMPORTANT: We no longer need the .mobile-nav section since interaction is on the image map */
-
+/* MOBILE FIXES */
 @media (max-width: 768px) {
 
-    /* Fullscreen mobile layout */
-    body {
-        padding: 0;
-        overflow-x: hidden;
-        /* Allow vertical scrolling if content is too tall */
-        overflow-y: auto; 
-    }
-    
-    .container {
-        /* Allow container to take up less space to center content */
-        margin-top: 0; 
-        align-items: center;
-        flex-direction: column;
-    }
+  .bubble {
+    width: 92vw !important;
+    max-height: 88vh !important;
+    padding: 15px 18px !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    z-index: 20000 !important;
+  }
 
-    /* Hide left menu completely */
-    .menu-wrapper {
-        display: none !important;
-    }
+  #bubbleText {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    text-align: left !important;
+  }
 
-    /* Hide language selector on mobile */
-    #langSelect {
-        display: none !important;
-    }
+  #bubbleText img {
+    width: 80px !important;
+    height: auto !important;
+    margin-bottom: 10px !important;
+  }
 
-    /* Room becomes responsive and centered */
-    #roomImg {
-        width: auto !important;
-        height: auto !important; 
-        max-width: 100vw;
-        /* Adjust max height so the image fits nicely above the bottom of the screen */
-        max-height: 85vh; 
-        object-fit: contain;
-        margin: 20px auto; /* Add margin for breathing room */
-        display: block;
-    }
-
-    /* Keep arrow pinned to image container */
-    #roomArrow {
-        z-index: 20;
-    }
-
-    /* Bubble becomes mobile-friendly */
-    .bubble {
-        width: 92vw !important;
-        max-height: 90vh !important;
-        overflow-y: auto;
-        padding: 20px;
-        font-size: 16px;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%) scale(1);
-    }
-
-    .close-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 20px;
-    }
-}
-
-/* ==============================
-   PLAIN BLACK AND WHITE LOADING SCREEN STYLES
-============================== */
-
-/* Adding transition for smooth fade out */
-#loadingScreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000; /* Ensures it's on top */
-  color: white;
-  font-family: monospace;
-  transition: opacity 1s ease-out; /* NEW: Smooth fade out */
-}
-
-.loader-container {
-  text-align: center;
-}
-
-.loading-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.progress-bar {
-  width: 300px; /* Adjust width as needed */
-  height: 20px;
-  border: 2px solid white;
-  margin: 0 auto 10px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 0%; /* Starts empty */
-  background: white;
-  transition: width 0.5s ease; /* Smooth fill */
-}
-
-.meter-percent {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-/* REMOVED .enter-btn STYLES */
-
-/* Optional: Hide main content until loading is done (if needed) */
-.container, .controls, .bg-animation {
-  opacity: 0; /* Start hidden, reveal on enter */
-  transition: opacity 1s ease;
-}
-
-.container.visible, .controls.visible, .bg-animation.visible {
-  opacity: 1;
+  #bubbleText p, 
+  #bubbleText div {
+    margin-bottom: 10px !important;
+  }
 }
 
 
