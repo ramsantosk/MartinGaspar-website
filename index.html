@@ -81,6 +81,48 @@
     <source src="bg.mp3" type="audio/mp3">
   </audio>
 
+  <!-- FIX FOR MOBILE IMAGE MAP CLICKING -->
+<script>
+window.addEventListener("load", function () {
+  const img = document.getElementById("roomImg");
+  const areas = document.querySelectorAll("area");
+  const originalCoords = [];
+
+  // Save original coords only once
+  areas.forEach((a, i) => {
+    originalCoords[i] = a.coords.split(',').map(Number);
+  });
+
+  function resizeMap() {
+    const w = img.naturalWidth;
+    const h = img.naturalHeight;
+    const cw = img.clientWidth;
+    const ch = img.clientHeight;
+
+    areas.forEach((a, i) => {
+      const newCoords = [];
+      const o = originalCoords[i];
+
+      for (let j = 0; j < o.length; j += 2) {
+        const x = (o[j] / w) * cw;
+        const y = (o[j + 1] / h) * ch;
+        newCoords.push(Math.round(x), Math.round(y));
+      }
+
+      a.coords = newCoords.join(",");
+    });
+  }
+
+  resizeMap();
+  window.addEventListener("resize", resizeMap);
+});
+</script>
+
+  <!-- END FIX -->
+
   <script src="script.js"></script>
+
+  
 </body>
 </html>
+
