@@ -81,6 +81,46 @@
     <source src="bg.mp3" type="audio/mp3">
   </audio>
 
+  <!-- FIX FOR MOBILE IMAGE MAP CLICKING -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const img = document.getElementById("roomImg");
+      const mapName = img.getAttribute("usemap");
+
+      // FORCE image map to recalculate on mobile sizes
+      function resizeMap() {
+        const w = img.naturalWidth;
+        const h = img.naturalHeight;
+        const wPercent = img.clientWidth / 100;
+        const hPercent = img.clientHeight / 100;
+
+        document.querySelectorAll(`map[name="${mapName.substring(1)}"] area`)
+          .forEach(area => {
+            const coords = area.dataset.originalCoords
+              .split(',')
+              .map((c, i) =>
+                i % 2 === 0 ? (c / w) * img.clientWidth : (c / h) * img.clientHeight
+              );
+            area.coords = coords.join(',');
+          });
+      }
+
+      // Save original coords once
+      document.querySelectorAll("area").forEach(area => {
+        if (!area.dataset.originalCoords) {
+          area.dataset.originalCoords = area.coords;
+        }
+      });
+
+      window.addEventListener("resize", resizeMap);
+      resizeMap(); // run on load
+    });
+  </script>
+  <!-- END FIX -->
+
   <script src="script.js"></script>
+
+  
 </body>
 </html>
+
